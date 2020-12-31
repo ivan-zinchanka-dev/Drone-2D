@@ -2,13 +2,7 @@
 
 public class CameraFollow : MonoBehaviour
 {
-
     [SerializeField] private GameObject drone;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {

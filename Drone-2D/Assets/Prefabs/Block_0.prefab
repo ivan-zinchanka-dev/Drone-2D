@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4488849927957676384, guid: 0a87407fa44557e4e98a1c003173a6c1,
+        type: 3}
+      propertyPath: name
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9028559313080690326, guid: 0a87407fa44557e4e98a1c003173a6c1,
         type: 3}
       propertyPath: m_Sprite
@@ -71,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 9028559313080690329, guid: 0a87407fa44557e4e98a1c003173a6c1,
         type: 3}
       propertyPath: m_Name
-      value: Block_2
+      value: Block_0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a87407fa44557e4e98a1c003173a6c1, type: 3}
