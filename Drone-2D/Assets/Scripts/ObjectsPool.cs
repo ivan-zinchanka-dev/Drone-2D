@@ -14,6 +14,24 @@ class ObjectsPool{
         used = null;
     }
 
+    public ObjectsPool(BackgroundObject source, Transform parent, int size) {
+
+        this.size = size;
+        int index;
+
+        for (int i = 0; i < size; i++)
+        {
+            
+            BackgroundObject current = (BackgroundObject)Object.Instantiate(source);
+            current.transform.position = new Vector3(-10.0f, 0.0f, 1.0f);
+        }
+
+        used = null;
+
+
+    }
+
+
     public ObjectsPool(ForegroundObject[] source, int size) {
 
         this.size = size;
@@ -23,6 +41,7 @@ class ObjectsPool{
 
             index = Random.Range(0, source.Length);
             ForegroundObject current = (ForegroundObject) Object.Instantiate(source[index]);
+            current.transform.position = new Vector3(-15.0f, 0.0f, 1.0f);
         }
         
         used = null;

@@ -20,7 +20,7 @@ public class ForegroundObject : MonoBehaviour
 
         if (creating != 0)
         {
-            float y = Random.Range(-3.0f, 4.0f);
+            float y = Random.Range(-3.0f, 3.0f);
             transform.position = new Vector3(birds_x, y, transform.position.z);
         }     
 
@@ -59,17 +59,17 @@ public class ForegroundObject : MonoBehaviour
             }
             else
             {
-                int value = Random.Range(0, 10);           // EMPTY 0  UPPER 1 LOWER 2
+                int value = Random.Range(0, 15);           // EMPTY 0  UPPER 1 LOWER 2
 
                 if (value == 0)
                 {
                     location = Location.UPPER;
                 }
-                else if (value <= 5)
+                else if (value <= 4)
                 {
                     location = Location.LOWER;
                 }
-                else if (value > 5) {
+                else if (value > 4) {
 
                     location = Location.EMPTY;
                 }
@@ -97,7 +97,6 @@ public class ForegroundObject : MonoBehaviour
                 lowerBlocksCount++;
             }
 
-
         }
 
         if (y != null) {
@@ -108,14 +107,7 @@ public class ForegroundObject : MonoBehaviour
         if (!isUpper) {
 
             blocks_x += 2.54f;
-        }
-
-        
-
-    }
-
-    private void Start()
-    {
+        }      
 
     }
 
@@ -129,8 +121,6 @@ public class ForegroundObject : MonoBehaviour
 
             SetBlockInWorld();
         }
-
-
     }
 }
 
