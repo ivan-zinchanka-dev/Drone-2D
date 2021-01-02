@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class BlocksPhysics : MonoBehaviour
+public class CollisionPhysics : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player") {
 
-            collision.gameObject.GetComponent<Controller>().state = false;
+            collision.gameObject.GetComponent<Controller>().Explose();
 
             Debug.Log("GAME OVER");
         }

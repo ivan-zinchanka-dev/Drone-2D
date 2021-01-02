@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 1086399961780265845}
   - component: {fileID: 1086399961780265846}
   - component: {fileID: 1086399961780265851}
+  - component: {fileID: -1650936319017686727}
   - component: {fileID: 1086399961780265850}
   - component: {fileID: -7703481207895077241}
   m_Layer: 0
-  m_Name: Birds_0
+  m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1086399961780265847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.885, y: -1.011, z: 0}
-  m_LocalScale: {x: 0.26856312, y: 0.26856312, z: 0.26856312}
+  m_LocalScale: {x: 0.27, y: 0.27, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -121,6 +122,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.16, y: -0.02}
   m_Size: {x: 2.75, y: 0.92}
   m_Direction: 1
+--- !u!114 &-1650936319017686727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086399961780265847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433e3705a1ca81345ae296ad81f66c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1086399961780265850
 MonoBehaviour:
   m_ObjectHideFlags: 0

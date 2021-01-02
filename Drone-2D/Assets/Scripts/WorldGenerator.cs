@@ -1,14 +1,37 @@
 ﻿using UnityEngine;
+using System.Collections;
+using TMPro;
 
 public class WorldGenerator : MonoBehaviour
 {
     [SerializeField] private Transform parent;
     [SerializeField] private ForegroundObject[] blocks;
-    [SerializeField] private ForegroundObject bird;
+    [SerializeField] private ForegroundObject[] birds;
     [SerializeField] private BackgroundObject background;
-    
-    
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private TextMeshProUGUI gameState;
+    [SerializeField] private Controller player;
+
+    private float gameTime = 0.0f;
+    private float distance = 0.0f;
+    public static bool pause { get; private set; } = true;
+
     public static float x_pos { get; private set; }
+
+    public void StartGame() {
+
+        pause = false;
+        gameState.text = "";
+        player.StartGame();
+    }
+
+    public IEnumerator Restart() {
+
+        //pause = true;
+        gameState.text = "Game over!";
+        yield return new WaitForSeconds(4f);
+        Application.LoadLevel("Scene");
+    }
 
     public static float GetGameX() {
 
@@ -41,27 +64,34 @@ public class WorldGenerator : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             BackgroundObject current = (BackgroundObject)Object.Instantiate(source);
-            current.transform.position = new Vector3(-10.0f, 0.0f, 1.0f);
+            current.transform.position = new Vector3(-40.0f, 0.0f, 1.0f);
         }
     }
 
 
     void Start()
     {
-        //ObjectsPool blocksPool = new ObjectsPool(blocks, 12);
-        //ObjectsPool birdsPool = new ObjectsPool(bird, 4);
-        //ObjectsPool backgroundPool = new ObjectsPool(background, parent, 1);
-
+        pause = true;
+        x_pos = 0;
         CreateObjectsPool(blocks, 12);
-        CreateObjectsPool(bird, 4);
+        CreateObjectsPool(birds, 10);
         CreateObjectsPool(background, parent, 1);
 
+        gameState.text = "Tap to start";
 
-        x_pos = 0;
+
+
     }
 
     void Update()
     {
         x_pos = transform.position.x;
+
+        if (pause || !player.alive) { return; }
+
+        gameTime += Time.deltaTime;
+        distance += 10.0f * Time.deltaTime;
+        score.text = string.Format("Distance: {0:D} m", (int)distance);
+      
     }
 }

@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (controller.state)
+        if (controller.alive)
         {
             this.transform.position = new Vector3(drone.transform.position.x + offset, this.transform.position.y, this.transform.position.z);
         }

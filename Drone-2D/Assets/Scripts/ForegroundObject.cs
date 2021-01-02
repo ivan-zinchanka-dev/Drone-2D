@@ -14,13 +14,24 @@ public class ForegroundObject : MonoBehaviour
     private static short upperBlocksCount = 0;
     private static short lowerBlocksCount = 0;
 
+
+    private void Start()
+    {
+        blocks_x = WorldGenerator.x_pos + blocks_addend;
+        birds_x = WorldGenerator.x_pos + birds_addend;
+        isUpper = false;
+        upperBlocksCount = 0;
+        lowerBlocksCount = 0;
+    }
+
+
     public void SetBirdInWorld() {
 
         byte creating = (byte) Random.Range(0, 2);
 
         if (creating != 0)
         {
-            float y = Random.Range(-3.0f, 3.0f);
+            float y = Random.Range(-2.5f, 3.0f);
             transform.position = new Vector3(birds_x, y, transform.position.z);
         }     
 
@@ -113,6 +124,11 @@ public class ForegroundObject : MonoBehaviour
 
     private void Update()
     {
+        if (WorldGenerator.pause) {
+
+            return;
+        }
+
         if (this.name == ObjectName.BIRD && this.transform.position.x + birds_addend < WorldGenerator.x_pos)
         {
             SetBirdInWorld();
@@ -131,5 +147,5 @@ enum Location {
 
 enum ObjectName {
 
-    BLOCK_0 = 0, BLOCK_1 = 1, BLOCK_2 = 2, BIRD = 3
+    BLOCK_0 = 0, BLOCK_1 = 1, BLOCK_2 = 2, BIRD = 3, BIRDS_GROUP = 4
 }

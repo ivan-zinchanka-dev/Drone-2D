@@ -2,6 +2,7 @@
 
 public class Controller : MonoBehaviour
 {
+    public WorldGenerator worldGenerator;
     [SerializeField] private float screwForce = 25.0f;
     [SerializeField] private float minimalForce = 10.0f;
     [SerializeField] private float ForwardMovementSpeed = 2.5f;
@@ -12,7 +13,7 @@ public class Controller : MonoBehaviour
     const float lowerBorder = -3.0f;
     const float upperBorder = 3.0f;
 
-    public bool state { get; set; }
+    public bool alive { get; private set; } = true;
 
 
     public float GetSpeed() {
@@ -20,17 +21,28 @@ public class Controller : MonoBehaviour
         return ForwardMovementSpeed;
     }
 
+    public void StartGame() {
+
+        drone.position = new Vector2(drone.position.x, 0.0f);
+
+    }
+
+    public void Explose() {
+
+        alive = false;
+        StartCoroutine(worldGenerator.Restart());
+    }
 
     void Start()
     {
-        state = true;
         drone = GetComponent<Transform>();
         body = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (!state) {
+
+        if (WorldGenerator.pause) {
 
             return;
         }
