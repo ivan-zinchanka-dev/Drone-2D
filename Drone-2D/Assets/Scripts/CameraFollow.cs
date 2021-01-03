@@ -2,9 +2,11 @@
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject drone;
-    [SerializeField] private Controller controller;
+    [SerializeField] private GameObject drone; 
     [SerializeField] private float offset = 0.0f;
+    [SerializeField] private float retard = 1.0f;
+
+    private Controller controller;
 
     private void Start()
     {
@@ -19,7 +21,7 @@ public class CameraFollow : MonoBehaviour
         }
         else {
 
-            transform.Translate(controller.GetSpeed() * Time.deltaTime, 0, 0);
+            transform.Translate(controller.GetSpeed() * retard * Time.deltaTime, 0, 0);
         }
 
         

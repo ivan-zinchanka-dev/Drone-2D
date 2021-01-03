@@ -8,7 +8,12 @@ public class CollisionPhysics : MonoBehaviour
 
             collision.gameObject.GetComponent<Controller>().Explose();
 
-            Debug.Log("GAME OVER");
+            if (this.gameObject.tag == "Bird") {
+
+                SpecialEffects.Instance.CreateFeathers(this.gameObject.GetComponent<Transform>().position);
+                Destroy(this.gameObject);
+            }
+                               
         }
 
     }

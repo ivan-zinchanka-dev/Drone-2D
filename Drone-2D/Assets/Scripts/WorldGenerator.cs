@@ -25,11 +25,15 @@ public class WorldGenerator : MonoBehaviour
         player.StartGame();
     }
 
-    public IEnumerator Restart() {
+    public void GameOver() {
 
-        //pause = true;
+        StartCoroutine(Restart());
+    }
+
+    private IEnumerator Restart() {
+
         gameState.text = "Game over!";
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         Application.LoadLevel("Scene");
     }
 

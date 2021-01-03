@@ -321,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 364547504}
   - component: {fileID: 364547505}
+  - component: {fileID: 364547506}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -368,6 +369,24 @@ MonoBehaviour:
   score: {fileID: 97223360}
   gameState: {fileID: 773213231}
   player: {fileID: 1534511086}
+--- !u!114 &364547506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364547503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ea9af6c81e46e4dbfba22276691aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feathers: {fileID: 2004903443514950893, guid: 20f65f4c5d8dae144a843b78be2d010f,
+    type: 3}
+  smoke: {fileID: 8966994747693633577, guid: 70b7f90d5df6a044fa084cb14be9c738, type: 3}
+  explosion_spark: {fileID: 6303070734793556089, guid: 9eed11716d4bdeb4087bcbdb18111010,
+    type: 3}
+  spark_duration: 0.25
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,8 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drone: {fileID: 1534511083}
-  controller: {fileID: 0}
   offset: 4
+  retard: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

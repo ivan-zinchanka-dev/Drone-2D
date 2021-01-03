@@ -29,8 +29,12 @@ public class Controller : MonoBehaviour
 
     public void Explose() {
 
+        SpecialEffects.Instance.CreateExplosion(drone.position);
+
         alive = false;
-        StartCoroutine(worldGenerator.Restart());
+        worldGenerator.GameOver();
+        Destroy(this.gameObject);
+        
     }
 
     void Start()
