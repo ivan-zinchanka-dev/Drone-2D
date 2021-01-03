@@ -2,7 +2,6 @@
 
 public class BackgroundObject : MonoBehaviour
 {
-
     private static float width = 10.0f;
     private static float addend = 30.0f;
     private static float x = 8.5f;
@@ -11,11 +10,8 @@ public class BackgroundObject : MonoBehaviour
     private void SetInWorld() {
 
         x = x + width;
-        Debug.Log("POS: " + x);
         transform.position = new Vector3(x, y, transform.position.z);
-
     } 
-
 
     private void Start()
     {
@@ -26,8 +22,7 @@ public class BackgroundObject : MonoBehaviour
 
         width = 45.35f;
 
-        Debug.Log("SIZE: " + width);
-
+        //Debug.Log("SIZE: " + width);
     }
 
 

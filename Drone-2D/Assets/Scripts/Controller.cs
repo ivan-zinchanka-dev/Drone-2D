@@ -15,7 +15,6 @@ public class Controller : MonoBehaviour
 
     public bool alive { get; private set; } = true;
 
-
     public float GetSpeed() {
 
         return ForwardMovementSpeed;
@@ -24,17 +23,14 @@ public class Controller : MonoBehaviour
     public void StartGame() {
 
         drone.position = new Vector2(drone.position.x, 0.0f);
-
     }
 
     public void Explose() {
 
         SpecialEffects.Instance.CreateExplosion(drone.position);
-
         alive = false;
         worldGenerator.GameOver();
-        Destroy(this.gameObject);
-        
+        Destroy(this.gameObject); 
     }
 
     void Start()
@@ -45,12 +41,10 @@ public class Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (WorldGenerator.pause) {
 
             return;
         }
-
 
         bool screwActive = Input.GetMouseButton(0);
 
@@ -70,9 +64,6 @@ public class Controller : MonoBehaviour
         {
             body.AddForce(new Vector2(0, screwForce));
         }
-
-
-
 
     }
 }

@@ -8,6 +8,7 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private ForegroundObject[] blocks;
     [SerializeField] private ForegroundObject[] birds;
     [SerializeField] private BackgroundObject background;
+
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI gameState;
     [SerializeField] private Controller player;
@@ -50,7 +51,7 @@ public class WorldGenerator : MonoBehaviour
         {
             index = Random.Range(0, source.Length);
             ForegroundObject current = Instantiate(source[index]);
-            current.transform.position = new Vector3(-15.0f, 0.0f, 1.0f);
+            current.transform.position = new Vector3(-25.0f, 0.0f, 1.0f);
         }
     }
 
@@ -59,7 +60,7 @@ public class WorldGenerator : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             ForegroundObject current = Instantiate(source);
-            current.transform.position = new Vector3(-15.0f, 0.0f, 1.0f);
+            current.transform.position = new Vector3(-25.0f, 0.0f, 1.0f);
         }
     }
 
@@ -72,7 +73,6 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         pause = true;
@@ -82,9 +82,6 @@ public class WorldGenerator : MonoBehaviour
         CreateObjectsPool(background, parent, 1);
 
         gameState.text = "Tap to start";
-
-
-
     }
 
     void Update()
