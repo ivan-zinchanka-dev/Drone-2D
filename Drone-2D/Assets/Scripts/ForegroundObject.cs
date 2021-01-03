@@ -35,7 +35,7 @@ public class ForegroundObject : MonoBehaviour
             transform.position = new Vector3(birds_x, y, transform.position.z);
         }     
 
-        birds_x = (birds_x < WorldGenerator.x_pos + birds_addend) ? (WorldGenerator.x_pos + birds_addend) : (birds_x + 3.0f);
+        birds_x = (birds_x < WorldGenerator.x_pos + birds_addend) ? (WorldGenerator.x_pos + birds_addend) : (birds_x + 10.0f);
 
     }
 
