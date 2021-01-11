@@ -6,7 +6,9 @@ public class SpecialEffects : MonoBehaviour
     [SerializeField] private ParticleSystem feathers = null;
     [SerializeField] private ParticleSystem smoke = null;
     [SerializeField] private SpriteRenderer explosion_spark = null;
+    [SerializeField] private AudioClip explosion_sound = null;
     [SerializeField] private float spark_duration = 0.25f;
+    private AudioSource audioSource; 
 
     void Awake()
     {
@@ -16,6 +18,7 @@ public class SpecialEffects : MonoBehaviour
         }
 
         Instance = this;
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     public void CreateFeathers(Vector3 position) {
@@ -34,6 +37,8 @@ public class SpecialEffects : MonoBehaviour
         SpriteRenderer explosion_clone = Instantiate(explosion_spark, position, Quaternion.identity) as SpriteRenderer;
         Destroy(explosion_clone.gameObject, spark_duration);
 
+        audioSource.clip = explosion_sound;
+        audioSource.Play();
     }
 
 }
