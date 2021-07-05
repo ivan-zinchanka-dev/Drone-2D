@@ -2,14 +2,14 @@
 
 public class LevelFix : MonoBehaviour
 {
-    [SerializeField] private string SortingLayerName = "Default";
-    [SerializeField] private int SortingOrder = 0;
+    [SerializeField] private string _sortingLayerName = "Default";
+    [SerializeField] private int _sortingOrder = 0;
 
     void Start()
     {
         Renderer rend = GetComponent<ParticleSystem>().GetComponent<Renderer>();
-        rend.sortingLayerName = SortingLayerName;
-        rend.sortingOrder = SortingOrder;
+        rend.sortingLayerName = _sortingLayerName;
+        rend.sortingOrder = _sortingOrder;
     }
 
 }

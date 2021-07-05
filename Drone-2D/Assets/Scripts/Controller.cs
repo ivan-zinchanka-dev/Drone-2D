@@ -1,68 +1,65 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Controller : MonoBehaviour
 {
-    public WorldGenerator worldGenerator;
-    [SerializeField] private float screwForce = 25.0f;
-    [SerializeField] private float minimalForce = 10.0f;
-    [SerializeField] private float ForwardMovementSpeed = 2.5f;
+    [SerializeField] private WorldGenerator _worldGenerator = null;
+    [SerializeField] private float _screwForce = 25.0f;
+    [SerializeField] private float _minimalForce = 10.0f;
+    [SerializeField] private float _forwardMovementSpeed = 2.5f;
 
-    private Transform drone;
-    private Rigidbody2D body;
+    [SerializeField] private Transform _drone = null;
+    [SerializeField] private Rigidbody2D _body = null;
 
-    const float lowerBorder = -3.0f;
-    const float upperBorder = 3.0f;
+    const float LowerBorder = -3.0f;
+    const float UpperBorder = 3.0f;
 
-    public bool alive { get; private set; } = true;
-
-    public float GetSpeed() {
-
-        return ForwardMovementSpeed;
-    }
+    public float ForwardMovementSpeed { get { return _forwardMovementSpeed; } }
+    public bool IsAlive { get; private set; } = true;
 
     public void StartGame() {
 
-        drone.position = new Vector2(drone.position.x, 0.0f);
+        _drone.position = new Vector2(_drone.position.x, 0.0f);
     }
 
     public void Explose() {
 
-        SpecialEffects.Instance.CreateExplosion(drone.position);
-        alive = false;
-        worldGenerator.GameOver();
+        SpecialEffects.Instance.CreateExplosion(_drone.position);
+        IsAlive = false;
+        _worldGenerator.GameOver();
         Destroy(this.gameObject); 
     }
 
     void Start()
     {
-        drone = GetComponent<Transform>();
-        body = GetComponent<Rigidbody2D>();
+        if(_drone == null) _drone = GetComponent<Transform>();
+        if(_body == null) _body = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (WorldGenerator.pause) {
+        if (WorldGenerator.Pause) {
 
             return;
         }
 
         bool screwActive = Input.GetMouseButton(0);
 
-        Vector2 newVelocity = body.velocity;
-        newVelocity.x = ForwardMovementSpeed;
-        body.velocity = newVelocity;
+        Vector2 newVelocity = _body.velocity;
+        newVelocity.x = _forwardMovementSpeed;
+        _body.velocity = newVelocity;
 
-        if (drone.position.y <= lowerBorder)
+        if (_drone.position.y <= LowerBorder)
         {
-            body.AddForce(new Vector2(0, screwForce));
+            _body.AddForce(new Vector2(0, _screwForce));
         }
-        else if (drone.position.y >= upperBorder) {
+        else if (_drone.position.y >= UpperBorder) {
 
-            body.AddForce(new Vector2(0, -1 * minimalForce));
+            _body.AddForce(new Vector2(0, -1 * _minimalForce));
         }
         else if (screwActive)
         {
-            body.AddForce(new Vector2(0, screwForce));
+            _body.AddForce(new Vector2(0, _screwForce));
         }
 
     }

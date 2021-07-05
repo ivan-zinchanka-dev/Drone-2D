@@ -2,31 +2,26 @@
 
 public class WorldSoundsManager : MonoBehaviour
 { 
-    [SerializeField] private AudioClip seagull_scream_1 = null;
-    [SerializeField] private AudioClip seagull_scream_2 = null;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip _seagullScream0 = null;
+    [SerializeField] private AudioClip _seagullScream1 = null;
+    [SerializeField] private AudioSource _audioSource = null;
 
     private static Sound scream = Sound.FIRST; 
 
     private void Start()
-    {
-        audioSource = this.GetComponent<AudioSource>();
-
+    {        
         if (scream == Sound.FIRST)
         {
-            audioSource.clip = seagull_scream_1;
-
-            //audioSource.volume = 0.5f;
+            _audioSource.clip = _seagullScream0;
             scream++;
         }
         else {
 
-            audioSource.clip = seagull_scream_2;
-            //audioSource.volume = 1.0f;
+            _audioSource.clip = _seagullScream1;            
             scream = Sound.FIRST;
         }
 
-        audioSource.Play();
+        _audioSource.Play();
     }
 
 }

@@ -2,13 +2,13 @@
 
 public class MovementThowards : MonoBehaviour
 {
-    [SerializeField] private float speed = 1.0f;
+    [SerializeField] private float _speed = 1.0f;
 
     void Update()
     {
-        if (WorldGenerator.pause){ return; }
+        if (WorldGenerator.Pause) return; 
 
-        transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+        transform.Translate(-1 * _speed * Time.deltaTime, 0, 0);
     }
 
 

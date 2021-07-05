@@ -2,13 +2,13 @@
 
 public class SpecialEffects : MonoBehaviour
 {
-    public static SpecialEffects Instance = null;
-    [SerializeField] private ParticleSystem feathers = null;
-    [SerializeField] private ParticleSystem smoke = null;
-    [SerializeField] private SpriteRenderer explosion_spark = null;
-    [SerializeField] private AudioClip explosion_sound = null;
-    [SerializeField] private float spark_duration = 0.25f;
-    private AudioSource audioSource; 
+    public static SpecialEffects Instance { get; private set; } = null;
+    [SerializeField] private ParticleSystem _feathers = null;
+    [SerializeField] private ParticleSystem _smoke = null;
+    [SerializeField] private SpriteRenderer _explosionSpark = null;
+    [SerializeField] private AudioClip _explosionSound = null;
+    [SerializeField] private float _sparkDuration = 0.25f;
+    [SerializeField] private AudioSource _audioSource = null; 
 
     void Awake()
     {
@@ -18,27 +18,24 @@ public class SpecialEffects : MonoBehaviour
         }
 
         Instance = this;
-        audioSource = this.GetComponent<AudioSource>();
     }
 
     public void CreateFeathers(Vector3 position) {
 
-        ParticleSystem feathers_clone = Instantiate(feathers, position, Quaternion.identity) as ParticleSystem;
-        Destroy(feathers_clone.gameObject, feathers.duration * 2);
-
+        ParticleSystem feathers_clone = Instantiate(_feathers, position, Quaternion.identity) as ParticleSystem;
+        Destroy(feathers_clone.gameObject, _feathers.duration * 2);
     }
 
     public void CreateExplosion(Vector3 position)
     {
+        ParticleSystem smoke_clone = Instantiate(_smoke, position, Quaternion.identity) as ParticleSystem;
+        Destroy(smoke_clone.gameObject, _smoke.duration * 2);
 
-        ParticleSystem smoke_clone = Instantiate(smoke, position, Quaternion.identity) as ParticleSystem;
-        Destroy(smoke_clone.gameObject, smoke.duration * 2);
+        SpriteRenderer explosion_clone = Instantiate(_explosionSpark, position, Quaternion.identity) as SpriteRenderer;
+        Destroy(explosion_clone.gameObject, _sparkDuration);
 
-        SpriteRenderer explosion_clone = Instantiate(explosion_spark, position, Quaternion.identity) as SpriteRenderer;
-        Destroy(explosion_clone.gameObject, spark_duration);
-
-        audioSource.clip = explosion_sound;
-        audioSource.Play();
+        _audioSource.clip = _explosionSound;
+        _audioSource.Play();
     }
 
 }

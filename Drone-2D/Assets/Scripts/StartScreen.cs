@@ -2,11 +2,11 @@
 
 public class StartScreen : MonoBehaviour
 {
-    public WorldGenerator wgen;
+    [SerializeField] private WorldGenerator _wgen = null;
 
     private void OnMouseUp()
     {
-        wgen.StartGame();
+        _wgen.StartGame();
         Destroy(this.gameObject);
     }
 

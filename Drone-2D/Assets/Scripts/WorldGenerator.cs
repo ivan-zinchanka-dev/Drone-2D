@@ -4,26 +4,26 @@ using TMPro;
 
 public class WorldGenerator : MonoBehaviour
 {
-    [SerializeField] private Transform parent;
-    [SerializeField] private ForegroundObject[] blocks;
-    [SerializeField] private ForegroundObject[] birds;
-    [SerializeField] private BackgroundObject background;
+    [SerializeField] private Transform _parent = null;
+    [SerializeField] private ForegroundObject[] _blocks = null;
+    [SerializeField] private ForegroundObject[] _birds = null;
 
-    [SerializeField] private TextMeshProUGUI score;
-    [SerializeField] private TextMeshProUGUI gameState;
-    [SerializeField] private Controller player;
+    [SerializeField] private TextMeshProUGUI _score = null;
+    [SerializeField] private TextMeshProUGUI _gameState = null;
+    [SerializeField] private Controller _player = null;
 
-    private float gameTime = 0.0f;
-    private float distance = 0.0f;
-    public static bool pause { get; private set; } = true;
+    private float _distance = 0.0f;
+    private const string _scoreFormat = "Distance: {0:D} m";
+    private const string _startMessage = "Tap to start";
 
-    public static float x_pos { get; private set; }
+    public static bool Pause { get; private set; } = true;
+    public static float XPos { get; private set; }
 
     public void StartGame() {
 
-        pause = false;
-        gameState.text = "";
-        player.StartGame();
+        Pause = false;
+        _gameState.text = "";
+        _player.StartGame();
     }
 
     public void GameOver() {
@@ -33,14 +33,9 @@ public class WorldGenerator : MonoBehaviour
 
     private IEnumerator Restart() {
 
-        gameState.text = "Game over!";
+        _gameState.text = "Game over!";
         yield return new WaitForSeconds(3f);
         Application.LoadLevel("Scene");
-    }
-
-    public static float GetGameX() {
-
-        return x_pos;
     }
 
     private void CreateObjectsPool(ForegroundObject[] source, int size) {
@@ -55,44 +50,23 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 
-    private void CreateObjectsPool(ForegroundObject source, int size)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            ForegroundObject current = Instantiate(source);
-            current.transform.position = new Vector3(-25.0f, 0.0f, 1.0f);
-        }
-    }
-
-    public void CreateObjectsPool(BackgroundObject source, Transform parent, int size)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            BackgroundObject current = (BackgroundObject)Object.Instantiate(source);
-            current.transform.position = new Vector3(-40.0f, 0.0f, 1.0f);
-        }
-    }
-
     void Start()
     {
-        pause = true;
-        x_pos = 0;
-        CreateObjectsPool(blocks, 12);
-        CreateObjectsPool(birds, 10);
-        CreateObjectsPool(background, parent, 1);
-
-        gameState.text = "Tap to start";
+        Pause = true;
+        XPos = 0;
+        CreateObjectsPool(_blocks, 12);
+        CreateObjectsPool(_birds, 10);
+        _gameState.text = _startMessage;
     }
 
     void Update()
     {
-        x_pos = transform.position.x;
+        XPos = transform.position.x;
 
-        if (pause || !player.alive) { return; }
+        if (Pause || !_player.IsAlive) { return; }
 
-        gameTime += Time.deltaTime;
-        distance += 10.0f * Time.deltaTime;
-        score.text = string.Format("Distance: {0:D} m", (int)distance);
+        _distance += 10.0f * Time.deltaTime;
+        _score.text = string.Format(_scoreFormat, (int)_distance);
       
     }
 }

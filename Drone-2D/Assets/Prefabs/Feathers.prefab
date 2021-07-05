@@ -4785,5 +4785,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692e1770c54c52442a965d34cd29b8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortingLayerName: Foreground
-  SortingOrder: 2
+  _sortingLayerName: Foreground
+  _sortingOrder: 2
